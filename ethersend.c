@@ -91,9 +91,9 @@ int main(int argc, char **argv) {
   // convert byte order from checksum register
   netsum = htonl(checksum);
   // copy checksum into buffer
-  memcpy(buf, &netsum, 4);
+  memcpy(buf, &netsum, CHECKLEN);
   // fill buffer with 0s
-  memset(buf + 4, 0, MTU - 4);
+  memset(buf + CHECKLEN, 0, MTU - CHECKLEN);
   // build and output checksum frame
   frame(dst, src, MTU, buf);
   printf("\n");
